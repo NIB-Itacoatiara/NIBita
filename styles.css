@@ -2,15 +2,16 @@
    VARIÁVEIS DE TEMA / BASE
    Paleta: tons suaves das Meditações
 ============================= */
-:root{
-  --primary: #f9b234;      /* laranja suave (meditações) */
+:root {
+  --primary: #f9b234;
+  /* laranja suave (meditações) */
   --accent: #ffab40;
   --bg-light: #fff7ed;
   --bg-alt: #fce8c8;
   --dark: #2a1308;
   --text-dark: #3e2723;
   --muted: #d8c5b6;
-  --shadow: rgba(0,0,0,0.12);
+  --shadow: rgba(32, 16, 16, 0.12);
 }
 
 /* =============================
@@ -24,10 +25,9 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden !important;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   scroll-behavior: smooth;
-  background: var(--bg-light);
-  color: var(--text-dark);
 }
 
 a {
@@ -46,10 +46,10 @@ header {
   padding: 15px 30px;
   background-color: var(--dark);
   color: #f1e7dc;
-  border-bottom: 3px solid ;
+  border-bottom: 3px solid;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   width: 100%;
-  position: relative;
+  position: fixed;
   z-index: 10;
   border-color: #ff4000;
 }
@@ -76,16 +76,15 @@ nav ul li a::after {
   position: absolute;
   left: 0;
   bottom: 0;
+  height: 2px;
   width: 0%;
-  height: 3px;
-  background-color: var(--primary-dark);
-  transition: width 0.3s ease;
-  border-radius: 2px;
+  background: #fff;
+  transition: width 0.3s;
 }
 
 nav ul li a:hover,
 nav ul li a.active {
-  color: white;
+  color: rgb(209, 202, 202);
   background-color: transparent;
   box-shadow: 0 2px 8px rgba(217, 119, 6, 0.18);
 }
@@ -99,60 +98,6 @@ nav ul li a.active {
   background-color: var(--primary-dark);
   color: white;
   box-shadow: 0 0 10px var(--primary-dark);
-}
-
-
-/* =============================
-   CAMPO DE PESQUISA (HEADER)
-============================= */
-.search-form {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 40px;
-  overflow: hidden;
-  transition: width 0.4s ease;
-  cursor: pointer;
-}
-
-.search-form input[type="search"] {
-  width: 0;
-  padding: 5px 0;
-  font-size: 16px;
-  border: 1.5px solid #ccc;
-  border-radius: 4px;
-  outline: none;
-  opacity: 0;
-  margin-right: 5px;
-  pointer-events: none;
-  transition: width 0.4s ease, padding 0.4s ease, opacity 0.4s ease;
-}
-
-.search-form:focus-within {
-  width: 250px;
-  cursor: auto;
-}
-
-.search-form:focus-within input[type="search"] {
-  width: 100%;
-  padding: 5px 10px;
-  opacity: 1;
-  pointer-events: auto;
-  border-color: var(--primary-dark);
-  box-shadow: 0 0 8px rgba(217,119,6,0.18);
-}
-
-.search-form button {
-  background: transparent;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  color: #f1e7dc;
-  transition: color 0.3s ease;
-}
-
-.search-form button:hover {
-  color: var(--primary);
 }
 
 /* ====== Seções ====== */
@@ -169,7 +114,8 @@ section {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  opacity: 0.8; /* correção: 80% -> 0.8 */
+  opacity: 0.8;
+  /* correção: 80% -> 0.8 */
 }
 
 .ImagemP img {
@@ -212,7 +158,8 @@ section {
 ============================= */
 /* ====== Eventos ====== */
 .eventos-section {
-  background-color: #fce8c; /* mantém tom marcante dos eventos */
+  background-color: #331b0d;
+  /* mantém tom marcante dos eventos */
   color: #f1e7dc;
   text-align: center;
   border-top: 3px solid var(--primary-dark);
@@ -250,7 +197,7 @@ section {
 }
 
 .eventos-container::-webkit-scrollbar-thumb {
-  background-color: var(--primary-dark);
+  background-color: #ff4000;
   border-radius: 10px;
 }
 
@@ -283,7 +230,7 @@ section {
 .evento p {
   margin: 15px 0;
   font-weight: bold;
-  color: #f1e7dc;
+  color: #eeeded;
 }
 
 .evento .descricao {
@@ -297,14 +244,17 @@ section {
 }
 
 .evento:hover .descricao {
-  color: #fff;
+  color: #ffffff;
 }
 
 .carousel-container {
   position: relative;
-  max-width: 980px; /* mesmo tamanho do carrossel */
+  max-width: 980px;
+  /* mesmo tamanho do carrossel */
   margin: 0 auto;
 }
+
+
 
 /* ====== Botões ====== */
 .carousel-btn {
@@ -327,12 +277,15 @@ section {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+
 .carousel-btn.prev {
-  left: -60px; /* fora do wrapper, mas ao lado */
+  left: -60px;
+  /* fora do wrapper, mas ao lado */
 }
 
 .carousel-btn.next {
-  right: -60px; /* fora do wrapper, mas ao lado */
+  right: -60px;
+  /* fora do wrapper, mas ao lado */
 }
 
 .carousel-btn:hover {
@@ -425,7 +378,8 @@ section {
    SEÇÃO DE MINISTÉRIOS
 ============================= */
 .ministries-section {
-  background-color: #fdfdfd; /* mesmo fundo da seção anterior */
+  background-color: #fdfdfd;
+  /* mesmo fundo da seção anterior */
   padding: 80px 60px;
   text-align: center;
   color: var(--text-dark);
@@ -515,7 +469,7 @@ section {
 }
 
 .ofertas-container {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(247, 234, 234, 0.85);
   border-radius: 20px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   text-align: center;
@@ -528,7 +482,8 @@ section {
 
 .ofertas-container h2 {
   font-size: 2.4rem;
-  color: var(--primary-dark); /* dourado-terroso */
+  color: var(--primary-dark);
+  /* dourado-terroso */
   margin-bottom: 20px;
   font-weight: 700;
 }
@@ -541,20 +496,20 @@ section {
 }
 
 .btn-contribua {
-  background-color: var(--primary-dark);
-  color: #fff;
+  background-color: whitesmoke;
+  color: #c75919;
   padding: 14px 38px;
   border-radius: 10px;
   font-weight: 600;
   font-size: 1.1rem;
   text-decoration: none;
-  box-shadow: 0 4px 10px rgba(217,119,6,0.25);
+  box-shadow: 0 4px 10px rgba(217, 119, 6, 0.25);
   transition: all 0.3s ease;
 }
 
 .btn-contribua:hover {
   background-color: var(--primary);
-  box-shadow: 0 0 15px var(--primary);
+  box-shadow: 0 0 15px yellow;
   transform: translateY(-3px);
 }
 
@@ -586,6 +541,7 @@ section {
   text-align: center;
   margin-top: 1.5rem;
 }
+
 .toggle-historico {
   background: none;
   border: none;
@@ -594,6 +550,7 @@ section {
   cursor: pointer;
   font-size: 1rem;
 }
+
 .toggle-historico i {
   color: var(--primary);
   margin-right: 0.5rem;
@@ -608,6 +565,7 @@ section {
   justify-content: center;
   position: relative;
 }
+
 .decisoes-content {
   background: #fffbed;
   border-radius: 22px;
@@ -618,18 +576,21 @@ section {
   text-align: center;
   z-index: 1;
 }
+
 .decisoes-content h2 {
   font-family: 'Georgia', serif;
   font-size: 2.4rem;
   color: #764e23;
   margin-bottom: 14px;
 }
+
 .decisoes-info {
   color: #55402b;
   font-size: 1.18rem;
   margin-bottom: 22px;
   line-height: 1.6;
 }
+
 .decision-banner {
   margin-top: 18px;
   background: #f5ece2;
@@ -641,6 +602,7 @@ section {
   flex-direction: column;
   align-items: center;
 }
+
 .decisoes-btn {
   background-color: #b17f3b;
   color: #ffffff;
@@ -654,24 +616,31 @@ section {
   transition:
     background 0.2s,
     box-shadow 0.33s,
-    transform 0.22s cubic-bezier(.27,.52,.12,1.25);
+    transform 0.22s cubic-bezier(.27, .52, .12, 1.25);
   /* Adicionada transição para transform */
 }
+
 .decisoes-btn:hover {
   background: #9b6a22;
   box-shadow: 0 4px 16px #b17f3b36;
-  transform: scale(1.14);   /* Expande em 14% */
+  transform: scale(1.14);
+  /* Expande em 14% */
 }
+
 .modal-overlay {
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
   z-index: 10;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(58,40,13,0.29);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(58, 40, 13, 0.29);
   backdrop-filter: blur(2px);
 }
+
 .modal-form {
   background: #fffbed;
   border-radius: 20px;
@@ -685,18 +654,21 @@ section {
   flex-direction: column;
   align-items: center;
 }
+
 .modal-form h3 {
   font-family: 'Georgia', serif;
   font-size: 1.33rem;
   color: #764e23;
   margin-bottom: 22px;
 }
+
 .decisoes-form {
   width: 90%;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
+
 .decisoes-form input {
   border: 1.5px solid #cab89b;
   border-radius: 18px;
@@ -709,9 +681,11 @@ section {
   transition: border 0.2s;
   width: 100%;
 }
+
 .decisoes-form input:focus {
   border: 1.5px solid #c7802a;
 }
+
 .fechar-modal {
   position: absolute;
   right: 14px;
@@ -722,14 +696,17 @@ section {
   color: #b17f3b;
   cursor: pointer;
 }
+
 @media (max-width:600px) {
   .decisoes-content {
     padding: 28px 6vw 18px;
     max-width: 98vw;
   }
+
   .decisoes-section {
     padding: 38px 0 12px 0;
   }
+
   .modal-form {
     padding: 22px 9vw 18px 9vw;
     min-width: 0;
@@ -741,13 +718,16 @@ section {
    (corrigido para evitar scroll lateral)
 ============================= */
 .custom-footer {
-  background-color: var(--dark); /* mesmo fundo do header */
-  color: #f1e7dc; /* texto claro */
+  background-color: var(--dark);
+  /* mesmo fundo do header */
+  color: #f1e7dc;
+  /* texto claro */
   padding: 40px 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   animation: fadeInUp 1s ease forwards;
   opacity: 1;
-  border-top: 3px solid var(--accent); /* mesmo destaque laranja do header */
+  border-top: 3px solid var(--accent);
+  /* mesmo destaque laranja do header */
 
   width: 100%;
   box-sizing: border-box;
@@ -776,7 +756,8 @@ section {
 .footer-column h6 {
   font-size: 1.2rem;
   margin-bottom: 15px;
-  color: var(--accent); /* mesmo laranja suave do header */
+  color: var(--accent);
+  /* mesmo laranja suave do header */
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-weight: 700;
@@ -785,7 +766,8 @@ section {
 .footer-column p {
   line-height: 1.6;
   font-size: 0.95rem;
-  color: #f1e7dc; /* texto claro */
+  color: #f1e7dc;
+  /* texto claro */
 }
 
 .footer-column a {
@@ -795,7 +777,8 @@ section {
 }
 
 .footer-column a:hover {
-  color: var(--accent); /* muda para o laranja suave ao passar o mouse */
+  color: var(--accent);
+  /* muda para o laranja suave ao passar o mouse */
   text-decoration: underline;
 }
 
@@ -838,6 +821,7 @@ section {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -877,7 +861,8 @@ section {
 
   .carousel-btn.prev,
   .carousel-btn.next {
-    display: none; /* oculta setas no celular */
+    display: none;
+    /* oculta setas no celular */
   }
 
   .ImagemM {
@@ -961,14 +946,14 @@ section {
 .igreja-card {
   background: #ffffff;
   border-radius: 18px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   padding: 25px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .igreja-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
 }
 
 .igreja-card h3 {
@@ -1031,13 +1016,13 @@ section {
   background: linear-gradient(145deg, #e9f1f8, #ffffff);
   border-radius: 15px;
   padding: 20px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .igreja-subcard:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
 
 .igreja-subcard h4 {
@@ -1069,7 +1054,8 @@ section {
     font-size: 1.6rem;
   }
 
-  .igreja-card, .igreja-subcard {
+  .igreja-card,
+  .igreja-subcard {
     padding: 20px;
   }
 }
