@@ -25,11 +25,6 @@
       </ul>
     </nav>
 
-    <!-- ======= CAMPO DE PESQUISA ======= -->
-    <form class="search-form" action="#" method="GET">
-      <input type="search" name="q" placeholder="Pesquisar..." aria-label="Pesquisar">
-      <button type="submit">🔍</button>
-    </form>
   </header>
 
   <!-- ======================================================
@@ -160,7 +155,8 @@
         <h3><i class="fas fa-file-alt"></i> Textos</h3>
         <ul class="igreja-list">
           <li><a href="#"><i class="far fa-file-pdf"></i> 12/10/2025 (PDF) - Força pra Mudar o Caráter</a></li>
-          <li><a href="#"><i class="far fa-file-pdf"></i> 12/10/2025 (LETRA GRANDE) - Força pra Mudar o Caráter</a></li>
+          <li><a href="#"><i class="far fa-file-pdf"></i> 12/10/2025 (LETRA GRANDE) - Força pra Mudar o Caráter</a>
+          </li>
           <li><a href="#"><i class="far fa-file-word"></i> 12/10/2025 (Word) - Força pra Mudar o Caráter</a></li>
           <li><a href="#"><i class="far fa-file-word"></i> 12/10/2025 (LETRA GRANDE) - Força pra Mudar o Caráter</a>
           </li>
@@ -323,65 +319,3 @@
       }
     });
   </script>
-
-  <!-- ======= JS: FORMULÁRIO DE DECISÕES (MODAL + WHATSAPP) ======= -->
-  <script>
-    // Abrir/fechar modal
-    document.getElementById('abrirForm').onclick = function () {
-      document.getElementById('modal-overlay').style.display = 'flex';
-      setTimeout(() => document.getElementById('nome').focus(), 200);
-    };
-    document.getElementById('fecharForm').onclick = function () {
-      document.getElementById('modal-overlay').style.display = 'none';
-    };
-    document.getElementById('modal-overlay').onclick = function (event) {
-      if (event.target === this) this.style.display = 'none';
-    };
-
-    // Envio via WhatsApp
-    function enviarWhats(event) {
-      event.preventDefault();
-      const nomeInput = document.getElementById('nome');
-      const mensagemInput = document.getElementById('mensagem');
-      const nome = nomeInput.value.trim();
-      const mensagem = mensagemInput.value.trim();
-
-      if (!nome || !mensagem) {
-        alert('Por favor, preencha seu nome e sua decisão/mensagem.');
-        if (!nome) nomeInput.focus();
-        else mensagemInput.focus();
-        return;
-      }
-
-      const telefone = '5592999991349';
-      const texto = `Olá! Me chamo ${nome}, e ${mensagem}`;
-      const msgformatada = encodeURIComponent(texto);
-      const url = `https://wa.me/${telefone}?text=${msgformatada}`;
-      window.open(url, '_blank');
-    }
-  </script>
-
-  <!-- ======= JS: ROLAGEM SUAVE COM COMPENSAÇÃO DO HEADER ======= -->
-  <script>
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', function (e) {
-        const targetId = this.getAttribute('href');
-        if (targetId !== '#' && document.querySelector(targetId)) {
-          e.preventDefault();
-          const target = document.querySelector(targetId);
-          const headerOffset = 80; // altura do menu fixo (ajuste se necessário)
-          const elementPosition = target.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-  </script>
-
-</body>
-
-</html>
