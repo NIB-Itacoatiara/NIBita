@@ -11,7 +11,7 @@
   --dark: #2a1308;
   --text-dark: #3e2723;
   --muted: #d8c5b6;
-  --shadow: rgba(0, 0, 0, 0.12);
+  --shadow: rgba(32, 16, 16, 0.12);
 }
 
 /* =============================
@@ -25,10 +25,9 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden !important;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   scroll-behavior: smooth;
-  background: var(--bg-light);
-  color: var(--text-dark);
 }
 
 a {
@@ -77,11 +76,10 @@ nav ul li a::after {
   position: absolute;
   left: 0;
   bottom: 0;
+  height: 2px;
   width: 0%;
-  height: 3px;
-  background-color: white;
-  transition: width 0.3s ease;
-  border-radius: 2px;
+  background: #fff;
+  transition: width 0.3s;
 }
 
 nav ul li a:hover,
@@ -256,6 +254,8 @@ section {
   margin: 0 auto;
 }
 
+
+
 /* ====== Botões ====== */
 .carousel-btn {
   position: absolute;
@@ -276,6 +276,7 @@ section {
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
+
 
 .carousel-btn.prev {
   left: -60px;
@@ -468,7 +469,7 @@ section {
 }
 
 .ofertas-container {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(247, 234, 234, 0.85);
   border-radius: 20px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   text-align: center;
@@ -495,8 +496,8 @@ section {
 }
 
 .btn-contribua {
-  background-color: var(--primary-dark);
-  color: #fff;
+  background-color: whitesmoke;
+  color: #c75919;
   padding: 14px 38px;
   border-radius: 10px;
   font-weight: 600;
@@ -508,7 +509,7 @@ section {
 
 .btn-contribua:hover {
   background-color: var(--primary);
-  box-shadow: 0 0 15px var(--primary);
+  box-shadow: 0 0 15px yellow;
   transform: translateY(-3px);
 }
 
