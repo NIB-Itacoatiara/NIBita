@@ -11,21 +11,27 @@
 
 <body>
   <!-- ======================================================
-       CABEÇALHO / MENU DE NAVEGAÇÃO
+       CABEÇALHO / MENU DE NAVEGAÇÃO + bOTÃO SANDUÍCHE
   ====================================================== -->
   <header>
-    <nav>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav id="nav">
       <ul>
         <li><a href="#sobre">Sobre</a></li>
         <li><a href="#novanews">NovaNews</a></li>
         <li><a href="#ministerios">Ministérios</a></li>
         <li><a href="#ofertas">Ofertas</a></li>
-        <li><a href="#meditações">Meditações</a></li>
         <li><a href="#decisoes">Decisões</a></li>
+        <li><a href="#meditações">Meditações</a></li>
       </ul>
     </nav>
-
   </header>
+  <div class="nav-overlay" id="navOverlay"></div>
+
 
   <!-- ======================================================
        LOGOTIPOS PRINCIPAIS
@@ -376,6 +382,33 @@
         }
       });
     });
+  </script>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+    const overlay = document.getElementById('navOverlay');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      nav.classList.toggle('active');
+      overlay.classList.toggle('active');
+    });
+
+    overlay.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      nav.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        nav.classList.remove('active');
+        overlay.classList.remove('active');
+      });
+    });
+
   </script>
 
 </body>
