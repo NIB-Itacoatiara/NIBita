@@ -28,13 +28,14 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  background-color: #5d4e42;
-  color: #faf7f4;
-  border-bottom: 3px solid #d4a574;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  background-color: #2a1308;
+  color: #f1e7dc;
+  border-bottom: 3px solid;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   width: 100%;
   position: fixed;
   z-index: 10;
+  border-color: #ff4000;
 }
 
 nav {
@@ -57,7 +58,7 @@ nav ul li a {
   padding: 6px 10px;
   border-radius: 5px;
   transition: color 0.3s ease, box-shadow 0.3s ease;
-  color: #faf7f4;
+  color: #f1e7dc;
 }
 
 /* Linha animada */
