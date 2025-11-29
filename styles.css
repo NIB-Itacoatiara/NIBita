@@ -1,19 +1,4 @@
 /* =============================
-   VARIÁVEIS DE TEMA / BASE
-   Paleta: tons suaves das Meditações
-============================= */
-:root{
-  --primary: #f9b234;      /* laranja suave (meditações) */
-  --accent: #ffab40;
-  --bg-light: #fff7ed;
-  --bg-alt: #fce8c8;
-  --dark: #2a1308;
-  --text-dark: #3e2723;
-  --muted: #d8c5b6;
-  --shadow: rgba(0,0,0,0.12);
-}
-
-/* =============================
    RESET BÁSICO E GERAIS
 ============================= */
 * {
@@ -24,10 +9,9 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden !important;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   scroll-behavior: smooth;
-  background: var(--bg-light);
-  color: var(--text-dark);
 }
 
 a {
@@ -44,20 +28,26 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  background-color: var(--dark);
-  color: #f1e7dc;
-  border-bottom: 3px solid ;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  background-color: #5d4e42;
+  color: #faf7f4;
+  border-bottom: 3px solid #d4a574;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
-  position: relative;
+  position: fixed;
   z-index: 10;
-  border-color: #ff4000;
+}
+
+nav {
+  width: 100%;
 }
 
 nav ul {
   display: flex;
   gap: 25px;
   list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
 }
 
 nav ul li a {
@@ -67,7 +57,7 @@ nav ul li a {
   padding: 6px 10px;
   border-radius: 5px;
   transition: color 0.3s ease, box-shadow 0.3s ease;
-  color: #f1e7dc;
+  color: #faf7f4;
 }
 
 /* Linha animada */
@@ -76,18 +66,17 @@ nav ul li a::after {
   position: absolute;
   left: 0;
   bottom: 0;
+  height: 2px;
   width: 0%;
-  height: 3px;
-  background-color: var(--primary-dark);
-  transition: width 0.3s ease;
-  border-radius: 2px;
+  background: #f5e6d3;
+  transition: width 0.3s;
 }
 
 nav ul li a:hover,
 nav ul li a.active {
-  color: white;
+  color: #f5e6d3;
   background-color: transparent;
-  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.18);
+  box-shadow: 0 2px 8px rgba(212, 165, 116, 0.2);
 }
 
 nav ul li a:hover::after,
@@ -96,63 +85,46 @@ nav ul li a.active::after {
 }
 
 nav ul li a.active {
-  background-color: var(--primary-dark);
-  color: white;
-  box-shadow: 0 0 10px var(--primary-dark);
+  background-color: #8b7355;
+  color: #faf7f4;
+  box-shadow: 0 0 10px rgba(139, 115, 85, 0.4);
 }
-
 
 /* =============================
-   CAMPO DE PESQUISA (HEADER)
+   MENU HAMBÚRGUER (MOBILE)
 ============================= */
-.search-form {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 40px;
-  overflow: hidden;
-  transition: width 0.4s ease;
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 24px;
   cursor: pointer;
-}
-
-.search-form input[type="search"] {
-  width: 0;
-  padding: 5px 0;
-  font-size: 16px;
-  border: 1.5px solid #ccc;
-  border-radius: 4px;
-  outline: none;
-  opacity: 0;
-  margin-right: 5px;
-  pointer-events: none;
-  transition: width 0.4s ease, padding 0.4s ease, opacity 0.4s ease;
-}
-
-.search-form:focus-within {
-  width: 250px;
-  cursor: auto;
-}
-
-.search-form:focus-within input[type="search"] {
-  width: 100%;
-  padding: 5px 10px;
-  opacity: 1;
-  pointer-events: auto;
-  border-color: var(--primary-dark);
-  box-shadow: 0 0 8px rgba(217,119,6,0.18);
-}
-
-.search-form button {
-  background: transparent;
+  z-index: 100;
+  background: none;
   border: none;
-  font-size: 18px;
-  cursor: pointer;
-  color: #f1e7dc;
-  transition: color 0.3s ease;
+  padding: 0;
 }
 
-.search-form button:hover {
-  color: var(--primary);
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #faf7f4;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
 }
 
 /* ====== Seções ====== */
@@ -169,7 +141,7 @@ section {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  opacity: 0.8; /* correção: 80% -> 0.8 */
+  opacity: 0.9;
 }
 
 .ImagemP img {
@@ -183,7 +155,6 @@ section {
   display: block;
   z-index: 1;
 }
-
 
 /* =============================
    IMAGEM CENTRAL SOBREPOSTA
@@ -208,6 +179,143 @@ section {
 }
 
 /* =============================
+   SEÇÃO NOVA NEWS
+============================= */
+.novanews-section {
+  background: linear-gradient(135deg, #f5efe8 0%, #e8ddd0 100%);
+  padding: 80px 5%;
+  text-align: center;
+}
+
+.novanews-section h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #5d4e42;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+
+.novanews-section h2::before,
+.novanews-section h2::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #d4a574);
+  transform: translateY(-50%);
+}
+
+.novanews-section h2::before {
+  left: -80px;
+  background: linear-gradient(90deg, transparent, #d4a574);
+}
+
+.novanews-section h2::after {
+  right: -80px;
+  background: linear-gradient(90deg, #d4a574, transparent);
+}
+
+.novanews-subtitle {
+  font-size: 1.2rem;
+  color: #8b7355;
+  margin-bottom: 40px;
+  font-style: italic;
+}
+
+.novanews-video-container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(93, 78, 66, 0.2);
+}
+
+.novanews-video-container::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  background: linear-gradient(135deg, #d4a574, #c9a87c, #e8d5c4);
+  border-radius: 23px;
+  z-index: -1;
+}
+
+.novanews-video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  background-color: #5d4e42;
+  border-radius: 17px;
+}
+
+.novanews-video-wrapper iframe,
+.novanews-video-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.novanews-video-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6b5b4f 0%, #5d4e42 100%);
+  color: #faf7f4;
+}
+
+.novanews-video-placeholder i {
+  font-size: 4rem;
+  margin-bottom: 15px;
+  color: #d4a574;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.novanews-video-placeholder:hover i {
+  transform: scale(1.2);
+  color: #e8d5c4;
+}
+
+.novanews-video-placeholder span {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.novanews-info {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.novanews-info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #6b5b4f;
+  font-size: 1rem;
+}
+
+.novanews-info-item i {
+  color: #c9a87c;
+  font-size: 1.3rem;
+}
+
+/* =============================
    primeira tela - versão moderna
 ============================= */
 /* ====== Eventos ====== */
@@ -215,19 +323,18 @@ section {
   background-color: #fce8c8; /* mantém tom marcante dos eventos */
   color: #f1e7dc;
   text-align: center;
-  border-top: 3px solid var(--primary-dark);
-  border-bottom: 3px solid var(--primary-dark);
+  border-top: 3px solid #d4a574;
+  border-bottom: 3px solid #d4a574;
   padding: 50px 5%;
 }
 
 .eventos-section h2 {
   font-size: 1.8rem;
   margin-bottom: 40px;
-  color: #fff;
+  color: #faf7f4;
 }
 
 /* ====== Carrossel ====== */
-/* Unificado: antes havia duplicações; mantive todas as regras necessárias */
 .carousel-wrapper {
   position: relative;
   max-width: 980px;
@@ -250,28 +357,28 @@ section {
 }
 
 .eventos-container::-webkit-scrollbar-thumb {
-  background-color: var(--primary-dark);
+  background-color: #d4a574;
   border-radius: 10px;
 }
 
 .eventos-container::-webkit-scrollbar-track {
-  background: var(--dark);
+  background: #5d4e42;
 }
 
 /* ====== Cards de Evento ====== */
 .evento {
   flex: 0 0 300px;
   scroll-snap-align: center;
-  background-color: var(--dark);
-  border-radius: 10px;
+  background-color: #f5efe8;
+  border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .evento:hover {
   transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 0 15px var(--primary);
+  box-shadow: 0 8px 20px rgba(212, 165, 116, 0.25);
 }
 
 .evento img {
@@ -283,13 +390,13 @@ section {
 .evento p {
   margin: 15px 0;
   font-weight: bold;
-  color: #f1e7dc;
+  color: #5d4e42;
 }
 
 .evento .descricao {
   font-weight: normal;
   font-size: 0.9rem;
-  color: var(--muted);
+  color: #8b7355;
   margin: 0 15px 20px 15px;
   line-height: 1.4;
   text-align: center;
@@ -297,12 +404,12 @@ section {
 }
 
 .evento:hover .descricao {
-  color: #fff;
+  color: #5d4e42;
 }
 
 .carousel-container {
   position: relative;
-  max-width: 980px; /* mesmo tamanho do carrossel */
+  max-width: 980px;
   margin: 0 auto;
 }
 
@@ -313,32 +420,32 @@ section {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: var(--primary-dark);
-  color: #fff;
+  background-color: #c9a87c;
+  color: #faf7f4;
   font-size: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border: 2px solid #fff;
+  border: 2px solid #faf7f4;
   transform: translateY(-50%);
   z-index: 100;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .carousel-btn.prev {
-  left: -60px; /* fora do wrapper, mas ao lado */
+  left: -60px;
 }
 
 .carousel-btn.next {
-  right: -60px; /* fora do wrapper, mas ao lado */
+  right: -60px;
 }
 
 .carousel-btn:hover {
-  background-color: var(--primary);
+  background-color: #d4a574;
   transform: translateY(-50%) scale(1.15) rotate(10deg);
-  box-shadow: 0 0 15px var(--primary);
+  box-shadow: 0 0 15px rgba(212, 165, 116, 0.5);
 }
 
 /* =============================
@@ -349,12 +456,12 @@ section {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #fdfdfd;
+  background-color: #fdfbf8;
   padding: 60px 80px;
   border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
   font-family: "Poppins", "Segoe UI", sans-serif;
-  color: var(--text-dark);
+  color: #5d4e42;
   gap: 60px;
 }
 
@@ -365,7 +472,7 @@ section {
 .text-content h1 {
   font-size: 3rem;
   margin-bottom: 4px;
-  color: var(--primary);
+  color: #c9a87c;
   font-weight: 700;
   letter-spacing: 1px;
 }
@@ -373,7 +480,7 @@ section {
 .text-content .subtitle {
   display: block;
   font-size: 1.1rem;
-  color: #6d4c41;
+  color: #8b7355;
   margin-bottom: 20px;
 }
 
@@ -381,7 +488,7 @@ section {
   font-style: italic;
   font-size: 1.4rem;
   margin-bottom: 24px;
-  color: var(--text-dark);
+  color: #6b5b4f;
   opacity: 0.85;
 }
 
@@ -394,11 +501,11 @@ section {
 .schedule li {
   margin-bottom: 12px;
   font-weight: 500;
-  color: #5d4037;
+  color: #6b5b4f;
 }
 
 .schedule li strong {
-  color: var(--primary);
+  color: #c9a87c;
   font-weight: 600;
 }
 
@@ -412,7 +519,7 @@ section {
   width: 100%;
   max-width: 420px;
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   object-fit: cover;
   transition: transform 0.3s ease;
 }
@@ -425,17 +532,17 @@ section {
    SEÇÃO DE MINISTÉRIOS
 ============================= */
 .ministries-section {
-  background-color: #fdfdfd; /* mesmo fundo da seção anterior */
+  background-color: #fdfbf8;
   padding: 80px 60px;
   text-align: center;
-  color: var(--text-dark);
+  color: #5d4e42;
   font-family: "Poppins", "Segoe UI", sans-serif;
 }
 
 .ministries-section h2 {
   font-size: 2.4rem;
   font-weight: 700;
-  color: var(--primary);
+  color: #c9a87c;
   margin-bottom: 50px;
   position: relative;
 }
@@ -445,7 +552,7 @@ section {
   display: block;
   width: 80px;
   height: 4px;
-  background-color: var(--accent);
+  background-color: #e8d5c4;
   margin: 10px auto 0;
   border-radius: 2px;
 }
@@ -458,9 +565,9 @@ section {
 }
 
 .ministry-card {
-  background-color: #fff8e1;
+  background-color: #f5efe8;
   border-radius: 16px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
   overflow: hidden;
   transition: all 0.3s ease;
   width: 300px;
@@ -468,7 +575,7 @@ section {
 
 .ministry-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 10px 25px rgba(244, 180, 0, 0.3);
+  box-shadow: 0 10px 25px rgba(212, 165, 116, 0.2);
 }
 
 .ministry-card img {
@@ -479,13 +586,13 @@ section {
 
 .ministry-card h3 {
   font-size: 1.3rem;
-  color: #a67c00;
+  color: #b08d5b;
   margin: 16px 0 10px;
 }
 
 .ministry-card p {
   font-size: 1rem;
-  color: #5d4037;
+  color: #6b5b4f;
   padding: 0 20px 20px;
   line-height: 1.5;
 }
@@ -494,7 +601,7 @@ section {
    SEÇÃO OFERTAS E CONTRIBUIÇÕES
 ============================= */
 .ofertas-section {
-  background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-alt) 100%);
+  background: linear-gradient(135deg, #fdfbf8 0%, #f5efe8 100%);
   padding: 100px 5%;
   display: flex;
   justify-content: center;
@@ -508,27 +615,27 @@ section {
   content: "";
   background: url('cruz-discreta.png') no-repeat center;
   background-size: 250px;
-  opacity: 0.05;
+  opacity: 0.03;
   position: absolute;
   inset: 0;
   z-index: 0;
 }
 
 .ofertas-container {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
   text-align: center;
   max-width: 700px;
   padding: 60px 40px;
   position: relative;
   z-index: 1;
-  color: #5d4037;
+  color: #6b5b4f;
 }
 
 .ofertas-container h2 {
   font-size: 2.4rem;
-  color: var(--primary-dark); /* dourado-terroso */
+  color: #b08d5b;
   margin-bottom: 20px;
   font-weight: 700;
 }
@@ -537,24 +644,25 @@ section {
   font-size: 1.15rem;
   line-height: 1.8;
   margin-bottom: 30px;
-  color: #4b2c14;
+  color: #5d4e42;
 }
 
 .btn-contribua {
-  background-color: var(--primary-dark);
-  color: #fff;
+  background-color: #f5efe8;
+  color: #b08d5b;
   padding: 14px 38px;
   border-radius: 10px;
   font-weight: 600;
   font-size: 1.1rem;
   text-decoration: none;
-  box-shadow: 0 4px 10px rgba(217,119,6,0.25);
+  box-shadow: 0 4px 10px rgba(176, 141, 91, 0.15);
   transition: all 0.3s ease;
 }
 
 .btn-contribua:hover {
-  background-color: var(--primary);
-  box-shadow: 0 0 15px var(--primary);
+  background-color: #d4a574;
+  color: #faf7f4;
+  box-shadow: 0 6px 15px rgba(212, 165, 116, 0.3);
   transform: translateY(-3px);
 }
 
@@ -564,21 +672,21 @@ section {
   justify-content: center;
   gap: 40px;
   font-size: 2rem;
-  color: #e6b800;
+  color: #d4a574;
   margin-bottom: 20px;
 }
 
 .ofertas-icons i.fa-heart {
-  color: #f5b642;
+  color: #e8c4a8;
   font-size: 2.2rem;
 }
 
 .ofertas-icons i.fa-hands-helping {
-  color: var(--primary-dark);
+  color: #c9a87c;
 }
 
 .ofertas-icons i.fa-cross {
-  color: #c68642;
+  color: #b08d5b;
 }
 
 /* Histórico */
@@ -586,97 +694,109 @@ section {
   text-align: center;
   margin-top: 1.5rem;
 }
+
 .toggle-historico {
   background: none;
   border: none;
-  color: var(--primary-dark);
+  color: #b08d5b;
   font-weight: 600;
   cursor: pointer;
   font-size: 1rem;
 }
+
 .toggle-historico i {
-  color: var(--primary);
+  color: #c9a87c;
   margin-right: 0.5rem;
 }
 
-/*decisão*/
+/* decisão */
 
 .decisoes-section {
-  background: linear-gradient(120deg, var(--bg-light) 60%, var(--bg-alt) 100%);
+  background: linear-gradient(120deg, #fdfbf8 60%, #f5efe8 100%);
   padding: 64px 0 48px 0;
   display: flex;
   justify-content: center;
   position: relative;
 }
+
 .decisoes-content {
-  background: #fffbed;
+  background: #fffefb;
   border-radius: 22px;
-  box-shadow: 0 6px 30px #cab89b30;
+  box-shadow: 0 6px 30px rgba(139, 115, 85, 0.1);
   padding: 42px 32px 26px;
   max-width: 525px;
   width: 100%;
   text-align: center;
   z-index: 1;
 }
+
 .decisoes-content h2 {
   font-family: 'Georgia', serif;
   font-size: 2.4rem;
-  color: #764e23;
+  color: #8b7355;
   margin-bottom: 14px;
 }
+
 .decisoes-info {
-  color: #55402b;
+  color: #6b5b4f;
   font-size: 1.18rem;
   margin-bottom: 22px;
   line-height: 1.6;
 }
+
 .decision-banner {
   margin-top: 18px;
-  background: #f5ece2;
+  background: #f5efe8;
   border-radius: 15px;
   padding: 20px 12px 14px;
-  color: #926d3a;
+  color: #8b7355;
   font-size: 1.08rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .decisoes-btn {
-  background-color: #b17f3b;
-  color: #ffffff;
+  background-color: #c9a87c;
+  color: #faf7f4;
   border: none;
   border-radius: 18px;
   font-size: 1.12rem;
   font-weight: 600;
   padding: 14px 28px;
   cursor: pointer;
-  box-shadow: 0 2px 10px #b17f3b21;
+  box-shadow: 0 2px 10px rgba(201, 168, 124, 0.2);
   transition:
     background 0.2s,
     box-shadow 0.33s,
-    transform 0.22s cubic-bezier(.27,.52,.12,1.25);
-  /* Adicionada transição para transform */
+    transform 0.22s cubic-bezier(.27, .52, .12, 1.25);
 }
+
 .decisoes-btn:hover {
-  background: #9b6a22;
-  box-shadow: 0 4px 16px #b17f3b36;
-  transform: scale(1.14);   /* Expande em 14% */
+  background: #b08d5b;
+  box-shadow: 0 4px 16px rgba(176, 141, 91, 0.3);
+  transform: scale(1.14);
 }
+
 .modal-overlay {
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
   z-index: 10;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(58,40,13,0.29);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(93, 78, 66, 0.25);
   backdrop-filter: blur(2px);
 }
+
 .modal-form {
-  background: #fffbed;
+  background: #fffefb;
   border-radius: 20px;
   padding: 36px 34px 28px 34px;
-  box-shadow: 0 10px 36px #a78a6022;
+  box-shadow: 0 10px 36px rgba(139, 115, 85, 0.15);
   min-width: 300px;
   max-width: 96vw;
   min-height: 260px;
@@ -685,33 +805,38 @@ section {
   flex-direction: column;
   align-items: center;
 }
+
 .modal-form h3 {
   font-family: 'Georgia', serif;
   font-size: 1.33rem;
-  color: #764e23;
+  color: #8b7355;
   margin-bottom: 22px;
 }
+
 .decisoes-form {
   width: 90%;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
+
 .decisoes-form input {
-  border: 1.5px solid #cab89b;
+  border: 1.5px solid #e8d5c4;
   border-radius: 18px;
   padding: 14px 18px;
   font-size: 1.06rem;
   font-family: inherit;
   outline: none;
-  background: #f9f5ee;
-  color: #443627;
+  background: #fdfbf8;
+  color: #5d4e42;
   transition: border 0.2s;
   width: 100%;
 }
+
 .decisoes-form input:focus {
-  border: 1.5px solid #c7802a;
+  border: 1.5px solid #c9a87c;
 }
+
 .fechar-modal {
   position: absolute;
   right: 14px;
@@ -719,41 +844,24 @@ section {
   background: none;
   border: none;
   font-size: 1.36rem;
-  color: #b17f3b;
+  color: #c9a87c;
   cursor: pointer;
-}
-@media (max-width:600px) {
-  .decisoes-content {
-    padding: 28px 6vw 18px;
-    max-width: 98vw;
-  }
-  .decisoes-section {
-    padding: 38px 0 12px 0;
-  }
-  .modal-form {
-    padding: 22px 9vw 18px 9vw;
-    min-width: 0;
-  }
 }
 
 /* =============================
    FOOTER / RODAPÉ
-   (corrigido para evitar scroll lateral)
 ============================= */
 .custom-footer {
-  background-color: var(--dark); /* mesmo fundo do header */
-  color: #f1e7dc; /* texto claro */
+  background-color: #5d4e42;
+  color: #faf7f4;
   padding: 40px 20px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   animation: fadeInUp 1s ease forwards;
   opacity: 1;
-  border-top: 3px solid var(--accent); /* mesmo destaque laranja do header */
-
+  border-top: 3px solid #d4a574;
   width: 100%;
   box-sizing: border-box;
-
-  /* sombra leve para dar profundidade */
-  box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.06);
 }
 
 .container {
@@ -776,7 +884,7 @@ section {
 .footer-column h6 {
   font-size: 1.2rem;
   margin-bottom: 15px;
-  color: var(--accent); /* mesmo laranja suave do header */
+  color: #e8d5c4;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-weight: 700;
@@ -785,17 +893,17 @@ section {
 .footer-column p {
   line-height: 1.6;
   font-size: 0.95rem;
-  color: #f1e7dc; /* texto claro */
+  color: #faf7f4;
 }
 
 .footer-column a {
-  color: #f1e7dc;
+  color: #faf7f4;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .footer-column a:hover {
-  color: var(--accent); /* muda para o laranja suave ao passar o mouse */
+  color: #e8d5c4;
   text-decoration: underline;
 }
 
@@ -809,12 +917,12 @@ section {
 
 .social-icons a {
   font-size: 1.7rem;
-  color: #f1e7dc;
+  color: #faf7f4;
   transition: transform 0.3s ease, color 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #f1e7dc;
+  border: 2px solid #faf7f4;
   padding: 8px;
   border-radius: 50%;
   width: 44px;
@@ -823,11 +931,11 @@ section {
 }
 
 .social-icons a:hover {
-  color: white;
-  border-color: var(--primary-dark);
-  background-color: var(--primary-dark);
+  color: #faf7f4;
+  border-color: #c9a87c;
+  background-color: #c9a87c;
   transform: scale(1.25) rotate(10deg);
-  box-shadow: 0 0 10px var(--primary);
+  box-shadow: 0 0 10px rgba(201, 168, 124, 0.5);
 }
 
 /* =============================
@@ -838,89 +946,10 @@ section {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-/* =============================
-   RESPONSIVIDADE
-============================= */
-@media (max-width: 992px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-  }
-
-  nav ul {
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-  }
-
-  .intro-section {
-    flex-direction: column;
-    text-align: center;
-    padding: 40px 20px;
-  }
-
-  .intro-section img {
-    max-width: 80%;
-  }
-
-  .ministries-grid {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .carousel-btn.prev,
-  .carousel-btn.next {
-    display: none; /* oculta setas no celular */
-  }
-
-  .ImagemM {
-    width: 300px;
-    height: 300px;
-  }
-}
-
-@media (max-width: 600px) {
-  nav ul li a {
-    font-size: 16px;
-  }
-
-  .text-content h1 {
-    font-size: 2.2rem;
-  }
-
-  .ministry-card {
-    width: 90%;
-  }
-
-  .custom-footer {
-    text-align: center;
-  }
-
-  .social-icons {
-    justify-content: center;
-  }
-}
-
-/* ===== Responsividade ===== */
-@media (max-width: 768px) {
-  .ofertas-container {
-    padding: 40px 20px;
-  }
-
-  .ofertas-container h2 {
-    font-size: 1.9rem;
-  }
-
-  .ofertas-icons {
-    gap: 25px;
-    font-size: 1.6rem;
   }
 }
 
@@ -935,7 +964,7 @@ section {
 
 .section-title {
   font-size: 2rem;
-  color: #0a4975;
+  color: #7a9eb8;
   text-align: center;
   margin-bottom: 40px;
   position: relative;
@@ -946,7 +975,7 @@ section {
   display: block;
   width: 80px;
   height: 3px;
-  background: #0a4975;
+  background: #a8c5d9;
   margin: 10px auto 0;
   border-radius: 10px;
 }
@@ -959,20 +988,20 @@ section {
 }
 
 .igreja-card {
-  background: #ffffff;
+  background: #fdfbf8;
   border-radius: 18px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   padding: 25px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .igreja-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
 }
 
 .igreja-card h3 {
-  color: #0a4975;
+  color: #7a9eb8;
   margin-bottom: 15px;
   display: flex;
   align-items: center;
@@ -990,7 +1019,7 @@ section {
 }
 
 .igreja-list a {
-  color: #333;
+  color: #5d4e42;
   text-decoration: none;
   font-size: 0.95rem;
   transition: color 0.2s ease;
@@ -998,23 +1027,22 @@ section {
 
 .igreja-list a i {
   margin-right: 8px;
-  color: #0a4975;
+  color: #7a9eb8;
 }
 
 .igreja-list a:hover {
-  color: #0a4975;
+  color: #7a9eb8;
 }
 
 .igreja-details summary {
   margin-top: 10px;
   cursor: pointer;
-  color: #0a4975;
+  color: #7a9eb8;
   font-weight: 600;
   display: flex;
   align-items: center;
   gap: 8px;
 }
-
 
 .igreja-details ul {
   margin-top: 10px;
@@ -1028,20 +1056,20 @@ section {
 }
 
 .igreja-subcard {
-  background: linear-gradient(145deg, #e9f1f8, #ffffff);
+  background: linear-gradient(145deg, #f0f5f8, #fdfbf8);
   border-radius: 15px;
   padding: 20px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .igreja-subcard:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 .igreja-subcard h4 {
-  color: #0a4975;
+  color: #7a9eb8;
   margin-bottom: 8px;
   display: flex;
   align-items: center;
@@ -1049,31 +1077,387 @@ section {
 }
 
 .igreja-subcard a {
-  color: #333;
+  color: #5d4e42;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;
 }
 
 .igreja-subcard a i {
-  color: #0a4975;
+  color: #7a9eb8;
   margin-right: 6px;
 }
 
 .igreja-subcard a:hover {
-  color: #0a4975;
-}
-
-@media (max-width: 768px) {
-  .section-title {
-    font-size: 1.6rem;
-  }
-
-  .igreja-card, .igreja-subcard {
-    padding: 20px;
-  }
+  color: #7a9eb8;
 }
 
 .igreja-details a:hover {
-  color: #0a4975;
+  color: #7a9eb8;
+}
+
+/* =============================
+   RESPONSIVIDADE
+============================= */
+
+/* Tablet */
+@media (max-width: 992px) {
+  header {
+    padding: 15px 20px;
+  }
+
+  nav ul {
+    gap: 15px;
+  }
+
+  nav ul li a {
+    font-size: 16px;
+    padding: 5px 8px;
+  }
+
+  .intro-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px;
+    gap: 30px;
+  }
+
+  .intro-section img {
+    max-width: 80%;
+  }
+
+  .ministries-section {
+    padding: 60px 30px;
+  }
+
+  .ministries-grid {
+    gap: 25px;
+  }
+
+  .carousel-btn.prev {
+    left: 10px;
+  }
+
+  .carousel-btn.next {
+    right: 10px;
+  }
+
+  .ImagemM {
+    width: 350px;
+    height: 350px;
+  }
+
+  .novanews-section h2::before,
+  .novanews-section h2::after {
+    display: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  header {
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 12px 20px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background-color: #5d4e42;
+    transition: right 0.4s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 99;
+    padding-top: 80px;
+  }
+
+  nav.active {
+    right: 0;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+  }
+
+  nav ul li {
+    width: 100%;
+    border-bottom: 1px solid rgba(250, 247, 244, 0.1);
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 18px 25px;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  nav ul li a::after {
+    display: none;
+  }
+
+  nav ul li a:hover {
+    background-color: rgba(212, 165, 116, 0.2);
+  }
+
+  /* Overlay para fechar menu */
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 98;
+  }
+
+  .nav-overlay.active {
+    display: block;
+  }
+
+  .ImagemM {
+    width: 250px;
+    height: 250px;
+  }
+
+  .ImagemP {
+    height: 70vh;
+  }
+
+  .intro-section {
+    padding: 30px 15px;
+  }
+
+  .text-content h1 {
+    font-size: 2rem;
+  }
+
+  .text-content .subtitle {
+    font-size: 1rem;
+  }
+
+  .motto {
+    font-size: 1.2rem;
+  }
+
+  .schedule {
+    font-size: 1rem;
+  }
+
+  .image-content img {
+    max-width: 100%;
+  }
+
+  /* NovaNews mobile */
+  .novanews-section {
+    padding: 50px 15px;
+  }
+
+  .novanews-section h2 {
+    font-size: 2rem;
+  }
+
+  .novanews-subtitle {
+    font-size: 1rem;
+    margin-bottom: 25px;
+  }
+
+  .novanews-video-container {
+    border-radius: 15px;
+  }
+
+  .novanews-info {
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .novanews-info-item {
+    font-size: 0.9rem;
+  }
+
+  /* Eventos mobile */
+  .eventos-section {
+    padding: 40px 15px;
+  }
+
+  .eventos-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
+
+  .carousel-btn.prev,
+  .carousel-btn.next {
+    display: none;
+  }
+
+  .evento {
+    flex: 0 0 260px;
+  }
+
+  /* Ministérios mobile */
+  .ministries-section {
+    padding: 50px 15px;
+  }
+
+  .ministries-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+
+  .ministries-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ministry-card {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  /* Ofertas mobile */
+  .ofertas-section {
+    padding: 60px 15px;
+  }
+
+  .ofertas-container {
+    padding: 40px 20px;
+  }
+
+  .ofertas-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .ofertas-text {
+    font-size: 1rem;
+  }
+
+  .ofertas-icons {
+    gap: 25px;
+    font-size: 1.6rem;
+  }
+
+  .btn-contribua {
+    padding: 12px 30px;
+    font-size: 1rem;
+  }
+
+  /* Decisões mobile */
+  .decisoes-section {
+    padding: 40px 15px;
+  }
+
+  .decisoes-content {
+    padding: 30px 20px 20px;
+    max-width: 100%;
+  }
+
+  .decisoes-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .decisoes-info {
+    font-size: 1rem;
+  }
+
+  .decisoes-btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+
+  .modal-form {
+    padding: 25px 20px 20px;
+    min-width: 0;
+    width: 90%;
+  }
+
+  /* Meditações mobile */
+  .igreja-modern {
+    margin: 40px auto;
+    padding: 15px;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .igreja-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .igreja-card {
+    padding: 20px;
+  }
+
+  .igreja-subgrid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .igreja-subcard {
+    padding: 18px;
+  }
+
+  /* Footer mobile */
+  .custom-footer {
+    padding: 30px 15px;
+    text-align: center;
+  }
+
+  .footer-row {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .footer-column {
+    min-width: auto;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+/* Mobile pequeno */
+@media (max-width: 480px) {
+  .text-content h1 {
+    font-size: 1.7rem;
+  }
+
+  .novanews-section h2 {
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+  }
+
+  .ImagemM {
+    width: 200px;
+    height: 200px;
+  }
+
+  .evento {
+    flex: 0 0 240px;
+  }
+
+  .ministry-card img {
+    height: 180px;
+  }
+
+  .ofertas-icons {
+    gap: 20px;
+    font-size: 1.4rem;
+  }
+
+  .ofertas-icons i.fa-heart {
+    font-size: 1.8rem;
+  }
 }
