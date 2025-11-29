@@ -212,7 +212,7 @@ section {
 ============================= */
 /* ====== Eventos ====== */
 .eventos-section {
-  background-color: #fce8c; /* mantém tom marcante dos eventos */
+  background-color: #fce8c8; /* mantém tom marcante dos eventos */
   color: #f1e7dc;
   text-align: center;
   border-top: 3px solid var(--primary-dark);

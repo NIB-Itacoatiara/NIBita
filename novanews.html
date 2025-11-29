@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NovaNews - Notícias & Eventos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="novanews.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a class="active" href="novanews.html">NovaNews</a></li>
+                <li><a href="#ministerios">Ministérios</a></li>
+                <li><a href="#ofertas">Ofertas</a></li>
+                <li><a href="#decisoes">Decisões</a></li>
+                <li><a href="#meditações">Meditações</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- ============================ -->
+    <!--  BANNER + INFORMAÇÕES -->
+    <!-- ============================ -->
+    <section class="novanews-section">
+        <h2>NovaNews</h2>
+
+        <div class="novanews-video-container">
+            <div class="novanews-video-wrapper">
+                <iframe src="https://www.youtube.com/embed/gpGUKj3a-RU" allowfullscreen frameborder="0">
+                </iframe>
+            </div>
+        </div>
+
+
+        <div class="novanews-info">
+            <div class="novanews-info-item">
+                <i class="fa-solid fa-calendar-days"></i> Últimos eventos
+            </div>
+            <div class="novanews-info-item">
+                <a href="https://www.instagram.com/nibitacoatiara?igsh=MTl2aWk1cjcyNzU0dQ==" target="_blank">
+                    <i class="fa-brands fa-instagram"></i> @NIBITA
+                </a>
+            </div>
+            <div class="novanews-info-item">
+                <a href="https://youtube.com/@novaigrejabatistadeitacoatiara?si=pfEwqkGyens-qXnG" target="_blank">
+                    <i class="fa-brands fa-youtube"></i> Canal oficial
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================ -->
+    <!--       FILTROS -->
+    <!-- ============================ -->
+    <section class="filtros-section">
+        <h2>Filtrar Conteúdo</h2>
+
+        <div class="filtros-container">
+            <button class="filtro-btn active" data-filter="todos">Todos</button>
+            <button class="filtro-btn" data-filter="eventos">Eventos</button>
+            <button class="filtro-btn" data-filter="avisos">Avisos</button>
+            <button class="filtro-btn" data-filter="celebracoes">Celebrações</button>
+            <button class="filtro-btn" data-filter="videos">Vídeos</button>
+        </div>
+    </section>
+
+    <!-- ============================ -->
+    <!--         FEED GRID -->
+    <!-- ============================ -->
+    <section class="feed-section">
+
+        <h2 class="section-title">Últimas Publicações</h2>
+
+        <div class="grid-feed" id="gridFeed">
+
+            <div class="feed-card" data-category="eventos">
+                <img src="img/evento1.jpg" alt="">
+                <div class="feed-info">
+                    <h3>Encontro de Jovens</h3>
+                    <p>Uma noite de louvor e comunhão especial!</p>
+                </div>
+            </div>
+
+            <div class="feed-card" data-category="avisos">
+                <img src="img/aviso1.jpg" alt="">
+                <div class="feed-info">
+                    <h3>Aviso Importante</h3>
+                    <p>Horários atualizados para os cultos de domingo.</p>
+                </div>
+            </div>
+
+            <div class="feed-card" data-category="celebracoes">
+                <img src="img/celebracao1.jpg" alt="">
+                <div class="feed-info">
+                    <h3>Batismos</h3>
+                    <p>Momento marcante para nossa comunidade!</p>
+                </div>
+            </div>
+
+            <div class="feed-card" data-category="videos">
+                <img src="img/video1.jpg" alt="">
+                <div class="feed-info">
+                    <h3>Novo Vídeo</h3>
+                    <p>Assista ao último culto em nosso YouTube.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================ -->
+    <!--       JS – FILTRO -->
+    <!-- ============================ -->
+    <script>
+        const btns = document.querySelectorAll('.filtro-btn');
+        const cards = document.querySelectorAll('.feed-card');
+
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelector('.filtro-btn.active').classList.remove('active');
+                btn.classList.add('active');
+
+                const filtro = btn.dataset.filter;
+
+                cards.forEach(card => {
+                    if (filtro === 'todos' || card.dataset.category === filtro) {
+                        card.style.display = 'block';
+                        card.style.opacity = 1;
+                    } else {
+                        card.style.opacity = 0;
+                        setTimeout(() => card.style.display = 'none', 200);
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
