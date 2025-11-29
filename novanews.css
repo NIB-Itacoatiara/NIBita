@@ -1,3 +1,8 @@
+/* ===========================
+   NovaNews - novanews.css
+   (arquivo completo com ajustes)
+   =========================== */
+
 /* Espaço abaixo do menu fixo */
 .page-top-space {
     height: 100px;
@@ -24,8 +29,6 @@
 
 /* ------------ VIDEO RESPONSIVO (OTIMIZADO) ------------- */
 
-/* ------------ VIDEO RESPONSIVO ------------- */
-
 .novanews-video-container {
     width: 100%;
     padding: 0;
@@ -49,7 +52,6 @@
     top: 0;
     left: 0;
 }
-
 
 /* ------------ FILTROS ------------- */
 
@@ -107,38 +109,181 @@
     margin-bottom: 35px;
 }
 
+/* Grid responsivo: mantém várias colunas, mas centraliza itens nas células */
 .grid-feed {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 28px;
+    justify-items: center; /* importante para centralizar cards quando há 1 coluna */
 }
 
+/* ------------ CARD BASE (mantido e ajustado) ------------- */
+
+/* limite de largura para evitar que fique enorme quando estiver sozinho */
 .feed-card {
     background: #FFFFFF;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-    transition: 0.3s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
+    width: 100%;
+    max-width: 420px;   /* evita expansion excessiva */
+    margin: 0 auto;     /* mantém centralizado dentro da célula do grid */
+    display: flex;
+    flex-direction: column;
 }
 
+/* Imagem do topo do card */
 .feed-card img {
     width: 100%;
     height: 220px;
     object-fit: cover;
+    display: block;
+    aspect-ratio: 16 / 9;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
 }
 
+/* hover do card */
 .feed-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     box-shadow: 0 8px 24px rgba(0,0,0,0.18);
 }
 
+/* Conteúdo do card */
 .feed-info {
     padding: 18px;
     color: #8A4B2A;
     text-align: center;
+    flex: 0 0 auto;
 }
 
 .feed-info h3 {
     margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
 }
+
+.feed-info p {
+    margin: 0;
+    font-size: 0.98rem;
+    color: #6e3e2a;
+    line-height: 1.4;
+    opacity: 0.95;
+}
+
+/* ============================= */
+/* DESCRIÇÃO EXPANDIDA DOS CARDS */
+/* ============================= */
+
+/* Elemento de descrição escondido por padrão */
+.feed-desc {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding: 0 18px 0 18px; /* mantém alinhamento com feed-info */
+    transition: max-height 0.35s ease, opacity 0.35s ease, padding 0.3s ease;
+    color: #4c2a12;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-align: left;
+    background: #fff; /* garante contraste com o card */
+}
+
+/* quando o card recebe .active, a descrição abre */
+.feed-card.active .feed-desc {
+    max-height: 260px; /* suficiente pra texto curto/médio */
+    opacity: 1;
+    padding-top: 12px;
+    padding-bottom: 18px;
+}
+
+/* pequena separação visual entre info e descrição quando aberta */
+.feed-card .feed-desc::before {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 60%;
+    margin: 8px auto 0 auto;
+    background: rgba(138,75,42,0.08);
+}
+
+/* ============================= */
+/* ESTADO ATIVO / DESTAQUE DO CARD */
+/* ============================= */
+
+.feed-card.active {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    transform: translateY(-4px);
+    z-index: 2; /* garante que sobresai levemente */
+}
+
+/* ============================= */
+/* RESPONSIVIDADE (melhor comportamento) */
+/* ============================= */
+
+@media (max-width: 900px) {
+    .grid-feed {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+    }
+    .feed-card {
+        max-width: 100%;
+    }
+    .feed-card img {
+        height: 180px;
+    }
+}
+
+@media (max-width: 520px) {
+    .filtro-btn {
+        padding: 8px 14px;
+        font-size: 0.95rem;
+    }
+    .novanews-section {
+        padding: 24px 4%;
+    }
+    .feed-card img {
+        height: 150px;
+    }
+}
+
+/* ============================= */
+/* ANIMAÇÃO EXTRA SUAVE (opcional) */
+/* ============================= */
+
+/* transição de opacidade ao mostrar/ocultar (útil se usar display:block/none via JS) */
+.feed-card.fade-in {
+    animation: fadeInCard 0.35s ease forwards;
+}
+@keyframes fadeInCard {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================= */
+/* Acessibilidade visual - foco */
+/* ============================= */
+.feed-card:focus {
+    outline: 3px solid rgba(247,164,0,0.18);
+    outline-offset: 4px;
+}
+
+/* ============================= */
+/* Pequenos ajustes estéticos    */
+/* ============================= */
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #F7A400;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* mantém consistência nas cores */
+a { color: inherit; }
