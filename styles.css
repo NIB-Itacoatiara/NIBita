@@ -320,8 +320,8 @@ section {
 ============================= */
 /* ====== Eventos ====== */
 .eventos-section {
-  background-color: #6b5b4f;
-  color: #faf7f4;
+  background-color: #fce8c8; /* mantém tom marcante dos eventos */
+  color: #f1e7dc;
   text-align: center;
   border-top: 3px solid #d4a574;
   border-bottom: 3px solid #d4a574;
