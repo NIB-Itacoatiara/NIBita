@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NIBITA - Nova Igreja Batista de Itacoatiara</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pix.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
 
@@ -22,12 +23,12 @@
     <nav id="nav">
       <ul>
         <li><a href="#sobre">Sobre</a></li>
-        <li><a href="novanews.html" >NovaNews</a></li>
+        <li><a href="novanews.html">NovaNews</a></li>
         <li><a href="#ministerios">Ministérios</a></li>
         <li><a href="#ofertas">Ofertas</a></li>
         <li><a href="#decisoes">Decisões</a></li>
         <li><a href="#meditações">Meditações</a></li>
-        
+
       </ul>
     </nav>
 
@@ -121,9 +122,49 @@
         Contribuir é mais do que doar — é participar da missão.
         Suas ofertas ajudam a espalhar o amor de Cristo e apoiar projetos que transformam vidas.
       </p>
-      <a href="#" class="btn-contribua">Contribua Agora</a>
+      <a href="#" class="btn-contribua" onclick="openPix(); return false;">Contribua Agora</a>
+
     </div>
   </section>
+
+  <!-- TELA DE CONTRIBUIÇÃO COM PIX -->
+  <!-- MODAL PIX OCULTO -->
+
+  <div id="pixModal" class="pix-modal hidden">
+    <div class="pix-modal-overlay" onclick="closePix()"></div>
+    <div class="pix-modal-content pix-card">
+      <h2 class="pix-title">Contribuição via PIX</h2>
+      <p class="pix-subtitle">Agradecemos sua oferta. Ela apoia a missão e o avanço do Reino.</p>
+
+
+      <div class="pix-info">
+        <h3>Chave PIX</h3>
+        <p class="pix-key">nibitacoatiara@nib.com</p>
+        <button class="copy-btn" onclick="copyPix()">Copiar Chave</button>
+      </div>
+
+
+      <div class="qr-container">
+        <img src="img/qrcode.png" alt="QR Code PIX" class="qr-img" />
+      </div>
+
+
+      <p class="pix-footer">Faça sua contribuição com amor e propósito.</p>
+
+
+      <button class="close-modal" onclick="closePix()">Fechar</button>
+    </div>
+  </div>
+
+
+  <div class="qr-container">
+    <img src="qr-code.png" alt="QR Code PIX" class="qr-img" />
+  </div>
+
+
+  <p class="pix-footer">Faça sua contribuição com amor e propósito.</p>
+  </div>
+  </div>
 
   <!-- ======================================================
        SEÇÃO: DECISÕES
@@ -314,6 +355,64 @@
       }
     });
   </script>
+
+  <script>
+  function openPix() {
+    const modal = document.getElementById('pixModal');
+    if (!modal) return;
+    modal.classList.remove('hidden');
+    // lock scroll
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePix() {
+    const modal = document.getElementById('pixModal');
+    if (!modal) return;
+    modal.classList.add('hidden');
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  }
+
+  function copyPix() {
+    const chave = document.querySelector('.pix-key')?.textContent?.trim() || 'nibitacoatiara@nib.com';
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(chave).then(() => {
+        alert('Chave PIX copiada: ' + chave);
+      }).catch(() => {
+        fallbackCopy(chave);
+      });
+    } else {
+      fallbackCopy(chave);
+    }
+  }
+
+  function fallbackCopy(text) {
+    const tmp = document.createElement('textarea');
+    tmp.value = text;
+    tmp.style.position = 'fixed';
+    tmp.style.left = '-9999px';
+    document.body.appendChild(tmp);
+    tmp.select();
+    try {
+      document.execCommand('copy');
+      alert('Chave PIX copiada: ' + text);
+    } catch (err) {
+      prompt('Copie a chave PIX manualmente:', text);
+    }
+    document.body.removeChild(tmp);
+  }
+
+  // fecha modal se usuário clicar no overlay (caso overlay exista)
+  document.addEventListener('click', function(e){
+    const modal = document.getElementById('pixModal');
+    if (!modal || modal.classList.contains('hidden')) return;
+    if (e.target.classList && e.target.classList.contains('pix-modal-overlay')) {
+      closePix();
+    }
+  });
+</script>
+
 
   <!-- ======= JS: BLOQUEIO DE PESQUISA VAZIA ======= -->
   <script>
