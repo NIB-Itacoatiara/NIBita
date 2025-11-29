@@ -12,12 +12,12 @@
 
 .novanews-section h2 {
     font-size: 2.6rem;
-    color: #5d4e42;
+    color: #8A4B2A;
     margin-bottom: 10px;
 }
 
 .novanews-subtitle {
-    color: #7a6a5b;
+    color: #6A3820;
     font-size: 1.1rem;
     margin-bottom: 35px;
 }
@@ -51,18 +51,16 @@
 }
 
 
-
-
 /* ------------ FILTROS ------------- */
 
 .filtros-section {
-    background: #faf7f4;
+    background: #FFFFFF;
     padding: 40px 5%;
     text-align: center;
 }
 
 .filtros-section h2 {
-    color: #5d4e42;
+    color: #8A4B2A;
     margin-bottom: 25px;
 }
 
@@ -74,9 +72,9 @@
 }
 
 .filtro-btn {
-    background: #d4a574;
+    background: #F7A400;
     border: none;
-    color: #fff;
+    color: #FFFFFF;
     padding: 10px 22px;
     border-radius: 25px;
     cursor: pointer;
@@ -85,26 +83,26 @@
 }
 
 .filtro-btn:hover {
-    background: #b08d5b;
+    background: #C67C00;
     transform: scale(1.07);
 }
 
 .filtro-btn.active {
-    background: #faf7f4;
-    color: #5d4e42;
-    border: 2px solid #d4a574;
+    background: #FFFFFF;
+    color: #8A4B2A;
+    border: 2px solid #F7A400;
 }
 
 /* ------------ FEED GRID ------------- */
 
 .feed-section {
     padding: 60px 5%;
-    background: #f5efe8;
+    background: #F5EFD7;
 }
 
 .section-title {
     text-align: center;
-    color: #5d4e42;
+    color: #8A4B2A;
     font-size: 2rem;
     margin-bottom: 35px;
 }
@@ -116,7 +114,7 @@
 }
 
 .feed-card {
-    background: #fff;
+    background: #FFFFFF;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
@@ -137,7 +135,7 @@
 
 .feed-info {
     padding: 18px;
-    color: #5d4e42;
+    color: #8A4B2A;
     text-align: center;
 }
 
